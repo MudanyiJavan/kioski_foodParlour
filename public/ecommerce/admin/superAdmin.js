@@ -87,41 +87,7 @@ async function fetching_allproducts(){
         productsDIV.appendChild(p)
     }
 }
-fetching_allproducts();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//fetching_allproducts();
 
 //uploading items
 btn.addEventListener("click", async()=>{
