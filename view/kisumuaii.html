@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Persistence Demo</title>
+    <style>
+        body { font-family: sans-serif; display: flex; gap: 40px; padding: 20px; }
+        .products, .cart-area { border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 300px; }
+        .product-item { margin-bottom: 15px; padding: 10px; border-bottom: 1px dashed #eee; }
+        button { cursor: pointer; background: #28a745; color: white; border: none; padding: 5px 10px; border-radius: 3px; }
+        #cart-list { list-style: none; padding: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="products">
+        <h3>Store Front</h3>
+        <div class="product-item" data-id="1323">
+            <span>Laptop ($999)</span>
+            <button onclick="addToCart(1323, 'Laptop')">Add to Cart</button>
+        </div>
+        <div class="product-item" data-id="1324">
+            <span>Smartphone ($699)</span>
+            <button onclick="addToCart(1324, 'Smartphone')">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cart-area">
+        <h3>Your Cart</h3>
+        <ul id="cart-list"></ul>
+        <button onclick="clearCart()" style="background:#dc3545">Clear Cart</button>
+    </div>
+
+    <script>
+        // 1. INITIALIZE: When the page loads, get data from LocalStorage
+        let cart = JSON.parse(localStorage.getItem('my_shopping_cart')) || [];
+
+        // Run this immediately on load to show existing items
+        renderCart();
+
+        // 2. ADD TO CART: Save the ID to the array and update storage
+        function addToCart(id, name) {
+            const item = { id: id, name: name };
+            cart.push(item);
+            
+            // Save to LocalStorage (must be converted to a String)
+            localStorage.setItem('my_shopping_cart', JSON.stringify(cart));
+            
+            renderCart();
+        }
+
+        // 3. RENDER: The visual part that updates the screen
+        function renderCart() {
+            const listElement = document.getElementById('cart-list');
+            listElement.innerHTML = ''; // Clear current UI
+
+            cart.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} (ID: ${item.id})`;
+                listElement.appendChild(li);
+            });
+        }
+
+        // 4. CLEAR: Wipe the storage
+        function clearCart() {
+            cart = [];
+            localStorage.removeItem('my_shopping_cart');
+            renderCart();
+        }
+    </script>
+</body>
+</html>

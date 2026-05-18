@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kioski</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div>
+        <p>Milk</p>
+        <p>Ksh. <span>60</span></p>
+        
+        <button onclick="cart(this,'milk',60)">cart</button>
+    </div>
+    <div>
+        <p>Icecream</p>
+        <p>Ksh. <span>40</span></p>
+        <button onclick="cart(this,'icecream',40)">cart</button>
+    </div>
+    <div>
+        <p>Bread</p>
+        <p>Ksh. <span>40</span></p>
+        <button onclick="cart(this,'Bread',40)">cart</button>
+    </div>
+    <div>
+        <img src="tuzo.jpg" alt="" srcset="" width="100" height="100">
+        <p>Yoghurt</p>
+        <p>Ksh. <span>65</span></p>        
+        <button onclick="cart(this, 'Youghurt', 65, 'tuzo.jpg')">cart</button>
+    </div>
+
+    <div><P>Cart <Span id="cart_value"></Span></P></div>
+    <script src="app4.js"></script>
+</body>
+</html>
