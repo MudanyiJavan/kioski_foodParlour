@@ -1,7 +1,7 @@
 const express = require("express")
 const path = require("path")
 const {MongoClient, ObjectId}= require("mongodb") // const {MongoClient}= require("mongodb")
-const PORT= 5000;
+
 const app = express()
 //Global variables
 const url = 'mongodb://localhost:27017'
@@ -244,7 +244,7 @@ app.get("/check-types", async (req, res) => {
 });
 
 
-
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
     console.log(`server running on http://localhost:${PORT}`)
 })
