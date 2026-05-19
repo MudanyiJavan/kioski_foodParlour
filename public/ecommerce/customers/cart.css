@@ -76,7 +76,6 @@ body{
     transform: translate(-50%, -50%);
     width: 90%;          /* Looks great on mobile phones */
     max-width: 450px;
-
     background-color: white;
     padding: 5px;    
     flex-direction: column;
