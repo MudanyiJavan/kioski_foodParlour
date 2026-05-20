@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const express = require("express")
 const path = require("path")
 const {MongoClient, ObjectId}= require("mongodb") // const {MongoClient}= require("mongodb")
@@ -5,7 +7,7 @@ const {MongoClient, ObjectId}= require("mongodb") // const {MongoClient}= requir
 const app = express()
 //Global variables
 const url = 'mongodb://localhost:27017'
-const url2 = 'mongodb://mudanyi:2024Japheth@ac-fwaq8g6-shard-00-00.moxtnys.mongodb.net:27017,ac-fwaq8g6-shard-00-01.moxtnys.mongodb.net:27017,ac-fwaq8g6-shard-00-02.moxtnys.mongodb.net:27017/?ssl=true&replicaSet=atlas-tq1wnq-shard-0&authSource=admin&appName=Nairobi-kioski'
+const url2 =process.env.MONGODB_URI
 const client = new MongoClient(url2)
 //middlewares
 app.use(express.static("public"))
@@ -23,10 +25,10 @@ async function connect(){
     }
 }
 connect()
-app.get('/', (req, res)=>{
+app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname, "public/ecommerce/admin/superAdmin.html"))
 })
-app.get("/landing", (req, res)=>{
+app.get("/landing", (req,res)=>{
     res.sendFile(path.join(__dirname, "public/ecommerce/customers/landing.html"))
 })
 app.get("/cart2", (req,res)=>{
@@ -248,6 +250,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, ()=>{
     console.log(`server running on http://localhost:${PORT}`)
 })
-
 
 
